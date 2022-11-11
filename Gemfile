@@ -73,3 +73,4 @@ end
 
 gem 'graphiql-rails'
 gem 'graphql'
+gem 'rack-cors'
