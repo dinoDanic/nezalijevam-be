@@ -11,6 +11,12 @@ module Mutations
 
       current_user = context[:current_user]
 
+      schedule_date = Schedule.where(date: date)
+
+      if schedule_date
+          raise GraphQL::ExecutionError, "Schedul date allready exists"
+      end
+
       if random 
         random_user = User.order(Arel.sql('Random()')).first
         schedule_random = Schedule.create!(
