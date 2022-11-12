@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_222827) do
   create_table "schedules", force: :cascade do |t|
     t.bigint "assignee_id", null: false
     t.bigint "assigned_id", null: false
-    t.datetime "date", null: false
+    t.date "date", null: false
     t.boolean "watered", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -3,7 +3,7 @@ class CreateSchedules < ActiveRecord::Migration[7.0]
     create_table :schedules do |t|
       t.references :assignee, null: false
       t.references :assigned, null: false
-      t.datetime :date, null: false
+      t.date :date, null: false
       t.boolean :watered, null: false
 
       t.timestamps
