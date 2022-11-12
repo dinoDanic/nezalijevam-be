@@ -1,11 +1,15 @@
 class CreateSchedules < ActiveRecord::Migration[7.0]
   def change
     create_table :schedules do |t|
-      t.references :user, null: false, foreign_key: true
+      t.references :assignee, null: false
+      t.references :assigned, null: false
       t.datetime :date, null: false
       t.boolean :watered, null: false
 
       t.timestamps
     end
+
+   add_foreign_key :schedules, :users, column: :assignee_id
+   add_foreign_key :schedules, :users, column: :assigned_id
   end
 end

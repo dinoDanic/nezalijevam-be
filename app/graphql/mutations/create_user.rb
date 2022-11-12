@@ -18,7 +18,8 @@ module Mutations
         password: password,
         full_name: full_name,
         nick_name: nick_name,
-        is_superadmin: false
+        is_superadmin: false,
+        active: true,
       )
       end
     end
