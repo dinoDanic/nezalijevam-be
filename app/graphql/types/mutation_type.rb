@@ -3,5 +3,6 @@ module Types
     field :create_user, mutation: Mutations::CreateUser
     field :create_schedule, mutation: Mutations::CreateSchedule
     field :remove_schedule_by_id, mutation: Mutations::RemoveScheduleById
+    field :update_schedule, mutation: Mutations::UpdateSchedule
   end
 end

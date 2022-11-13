@@ -30,5 +30,34 @@ module Types
       end
     end
 
+    field :get_all_users, [Types::UserType], null: true, description: "Get all active users"
+
+    def get_all_users
+      users = User.where(active: true)
+      if users
+        users
+      else
+        raise GraphQL::ExecutionError, "no active users"
+      end
+    end
+
+    field :get_scheduled_user, Types::UserType, null: true, description: "Get user that is scheduled"
+    def get_scheduled_user
+      schedule = Schedule.where(watered: false).order(date: :asc).first()
+      if schedule
+        user_schedule = User.find_by(id: schedule.assigned_id)
+        user_schedule
+      end
+    end
+
+    def get_all_users
+      users = User.where(active: true)
+      if users
+        users
+      else
+        raise GraphQL::ExecutionError, "no active users"
+      end
+    end
+
   end
 end 
