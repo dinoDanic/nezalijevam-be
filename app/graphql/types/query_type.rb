@@ -21,10 +21,14 @@ module Types
       context[:current_user]
     end
 
-    # field :next_schedule, Types::UserType, null: true, description: "Next user for watering"
-    # def next_schedule
-    #   User.find
-    # end
+    field :next_schedule, Types::ScheduleType, null: true, description: "Next user for watering"
+    def next_schedule
+      schedule = Schedule.where(watered: false).order(date: :asc).first()
+      if schedule
+        user_schedule = User.find_by(id: schedule.assigned_id)
+        schedule
+      end
+    end
 
   end
-end
+end 
