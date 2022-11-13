@@ -30,6 +30,15 @@ module Types
       end
     end
 
+    field :get_schedule_history, [Types::ScheduleType], null: true, description: "schedule history by year and month" do
+      argument :year, Integer, required: true
+      argument :month, Integer, required: true
+    end
+
+    def get_schedule_history(year:, month:)
+      Schedule.where("extract(year from date) = ?", year ).where("extract(month from date) = ?", month )
+    end
+
     field :get_all_users, [Types::UserType], null: true, description: "Get all active users"
 
     def get_all_users

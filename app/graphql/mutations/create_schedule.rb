@@ -11,7 +11,7 @@ module Mutations
 
       current_user = context[:current_user]
 
-      schedule_date = Schedule.where(date: date).first()
+      schedule_date = Schedule.where(date: date, watered: false).first()
 
       if schedule_date
           raise GraphQL::ExecutionError, "Schedul date allready exists"

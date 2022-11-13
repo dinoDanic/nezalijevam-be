@@ -13,6 +13,15 @@ module Mutations
       
       schedule = Schedule.find_by(id: schedule_id)
 
+
+      isUserCreator = schedule.assigned_id == current_user.id
+
+      assigned_user = User.find_by(id: schedule.assigned_id)
+
+      if isUserCreator == false
+        raise GraphQL::ExecutionError, "Only Assigned user can water the plant => #{assigned_user.full_name} <="
+      end
+
       if schedule.update(args) 
         schedule
       else
